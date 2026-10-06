@@ -1,289 +1,452 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/gmail.svg" rel="stylesheet">
+
+  <!-- Font Awesome & DevIcon CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
   <link rel="icon" type="image/png" href="Colebemis-Feather-Briefcase.svg">
-  <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />    
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <title>Curriculo - Italo Anthero</title>
+  <title>Currículo - Italo Anthero</title>
+
   <style>
     body {
       font-family: 'Inter', sans-serif;
+      background-color: #090d16;
+      color: #0f172a;
+      overflow-x: hidden;
     }
-    .animate-gradient {
-      background-size: 200% 200%;
-      animation: gradientAnimation 3s ease infinite;
+
+    /* Canvas para partículas sutis em movimento no fundo */
+    #bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
     }
-    @keyframes gradientAnimation {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
+
+    /* Card Principal Minimalista em Branco */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* Estilo dos cards internos */
+    .content-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      transition: all 0.25s ease;
+    }
+
+    .content-box:hover {
+      border-color: #0f172a;
+      background: #ffffff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
   </style>
 </head>
-<body class="bg-gray-50">
-  <div class="container max-w-5xl mx-auto p-4 my-8">
-    <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
-      
-      <!-- Header Section -->
-      <div class="bg-gradient-to-r from-black to-indigo-700 animate-gradient text-white p-6 md:p-10">
-        <div class="flex flex-col md:flex-row items-center">
-          <div class="md:w-1/4 flex justify-center mb-6 md:mb-0">
-            <div class="h-40 w-40 rounded-full border-4 border-white shadow-lg overflow-hidden bg-blue-200 flex items-center justify-center">
-              <img src="/foto.jpg">
+
+<body class="min-h-screen py-6 px-3 sm:px-6 flex items-center justify-center relative">
+
+  <!-- Canvas em Movimento (Fundo) -->
+  <canvas id="bg-canvas"></canvas>
+
+  <div class="container max-w-5xl mx-auto relative z-10 my-4">
+    <div class="glass-card rounded-3xl shadow-2xl overflow-hidden p-6 md:p-10 border border-gray-200">
+
+      <!-- ==================== HEADER ==================== -->
+      <header class="border-b border-gray-200 pb-8 mb-8">
+        <div class="flex flex-col md:flex-row items-center gap-6">
+
+          <div class="md:w-1/4 flex justify-center">
+            <div class="h-36 w-36 md:h-40 md:w-40 rounded-full border-4 border-slate-900 shadow-xl overflow-hidden bg-slate-100 flex items-center justify-center relative">
+              <img src="./WhatsApp Image 2026-10-06 at 10.01.34.jpeg" alt="Foto de Italo Anthero" class="w-full h-full object-cover">
             </div>
           </div>
-          <div class="md:w-3/4 text-center md:text-left md:pl-8">
-            <h1 class="text-3xl md:text-4xl font-bold mb-2">Italo Anthero</h1>
-            <h2 class="text-xl md:text-2xl font-medium mb-4">Desenvolvedor Júnior</h2>
-            <div class="flex flex-wrap justify-center md:justify-start gap-3">
-              <div class="flex items-center bg-white bg-opacity-20 rounded-full px-4 py-1">
-                
-              </div>
-             
-              <div class="flex items-center bg-white bg-opacity-20 rounded-full px-4 py-1">
-               
-              </div>
+
+          <div class="md:w-3/4 text-center md:text-left">
+            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-1 text-slate-900">Italo Anthero</h1>
+            <h2 class="text-lg md:text-xl font-semibold text-slate-700 mb-3">Desenvolvedor Júnior</h2>
+
+            <p class="text-slate-600 text-sm md:text-base max-w-2xl mb-5 leading-relaxed">
+              Estudante de Desenvolvimento de Sistemas, focado em desenvolvimento web, interfaces responsivas e constante evolução para atuação Full Stack.
+            </p>
+
+            <div class="flex flex-wrap justify-center md:justify-start gap-2.5">
+              <span class="flex items-center bg-slate-900 border border-slate-800 rounded-full px-3.5 py-1.5 text-xs font-medium text-white shadow-sm">
+                <i class="fa-solid fa-location-dot mr-2 text-slate-300"></i> São Gonçalo, RJ
+              </span>
             </div>
           </div>
+
         </div>
-      </div>
-      
-      <!-- Main Content -->
-      <div class="p-6 md:p-10">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          
-          <!-- Left Column -->
-          <div class="col-span-2">
-            <!-- About Me -->
-            <div class="mb-8">
-              <h2 class="text-xl font-bold text-gray-800 mb-2 flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
-                Sumário
+      </header>
+
+      <!-- ==================== CONTEÚDO ==================== -->
+      <main>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+
+          <!-- ==================== COLUNA PRINCIPAL ==================== -->
+          <div class="lg:col-span-2 space-y-8">
+
+            <!-- SOBRE -->
+            <section>
+              <h2 class="text-lg font-bold text-slate-900 mb-1 flex items-center">
+                <i class="fa-solid fa-user mr-2.5 text-slate-900"></i>
+                Perfil Profissional
               </h2>
-              <div class="w-16 h-1 bg-blue-800 mb-4"></div>
-              <p class="text-black">Desenvolvedor Júnior Frontend com foco em evolução para Full Stack, com base em HTML5, CSS3, JavaScript e Python. Focado na criação de interfaces responsivas, código limpo e no aprendizado contínuo de arquitetura de software, bancos de dados e integração de APIs para o desenvolvimento de aplicações completas.</p>
-            </div>
-            
-            <!-- Professional Experience -->
-            <div class="mb-8">
-              <h2 class="text-xl font-bold text-black mb-2 flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
+              <div class="w-12 h-1 bg-slate-900 rounded-full mb-3"></div>
+
+              <div class="content-box p-4 rounded-xl text-slate-700 text-sm leading-relaxed space-y-2">
+                <p>
+                  Estudante de Desenvolvimento de Sistemas e desenvolvedor em formação, com foco em desenvolvimento web e interesse em evoluir para Full Stack. Possuo conhecimentos em HTML5, CSS3, JavaScript, Python, Tailwind CSS, Git e GitHub, além de estar ampliando meus conhecimentos em APIs, bancos de dados e arquitetura de software.
+                </p>
+                <p>
+                  Tenho interesse em transformar ideias em aplicações funcionais, responsivas e intuitivas, buscando escrever código organizado e compreender boas práticas de desenvolvimento por meio de projetos práticos.
+                </p>
+              </div>
+            </section>
+
+            <!-- OBJETIVO -->
+            <section>
+              <h2 class="text-lg font-bold text-slate-900 mb-1 flex items-center">
+                <i class="fa-solid fa-bullseye mr-2.5 text-slate-900"></i>
+                Objetivo Profissional
+              </h2>
+              <div class="w-12 h-1 bg-slate-900 rounded-full mb-3"></div>
+
+              <div class="p-4 bg-slate-900 text-white rounded-xl shadow-sm">
+                <p class="text-sm leading-relaxed font-normal text-slate-200">
+                  Busco uma oportunidade na área de tecnologia para aplicar meus conhecimentos, desenvolver experiência profissional e agregar valor junto a uma equipe de desenvolvimento. Tenho interesse especialmente em Frontend e evolução para Full Stack.
+                </p>
+              </div>
+            </section>
+
+            <!-- PROJETOS -->
+            <section>
+              <h2 class="text-lg font-bold text-slate-900 mb-1 flex items-center">
+                <i class="fa-solid fa-laptop-code mr-2.5 text-slate-900"></i>
                 Projetos
               </h2>
-              <div class="w-16 h-1 bg-blue-800 mb-4"></div>
+              <div class="w-12 h-1 bg-slate-900 rounded-full mb-4"></div>
 
-              <!-- Experience 1 -->
-              <div class="mb-6 relative pl-6 border-l-2 border-blue-800">
-                <div class="absolute -left-1.5 top-1.5 w-3 h-3 rounded-full bg-blue-400"></div>
-                <h3 class="text-lg font-bold text-black">Lista de tarefas</h3>
-                <p class="text-blue-800 font-medium text-sm mb-2">HTML, CSS, Tailwindcss, Javascript</p>
+              <div class="space-y-4">
+                <!-- Projeto 1 -->
+                <div class="content-box p-4 rounded-xl">
+                  <div class="flex justify-between items-start mb-1">
+                    <h3 class="font-bold text-slate-900 text-base">Lista de Tarefas</h3>
+                    <span class="text-xs font-semibold px-2.5 py-0.5 rounded bg-slate-200 text-slate-900 border border-slate-300">Web App</span>
+                  </div>
+                  <p class="text-xs font-semibold text-slate-700 mb-2">HTML5 • CSS3 • JavaScript • Tailwind CSS</p>
+                  <p class="text-xs text-slate-600 leading-relaxed">
+                    Aplicação web para gerenciamento de tarefas, desenvolvida com foco em interface responsiva, organização visual, interatividade e manipulação do DOM.
+                  </p>
+                </div>
+
+                <!-- Projeto 2 -->
+                <div class="content-box p-4 rounded-xl">
+                  <div class="flex justify-between items-start mb-1">
+                    <h3 class="font-bold text-slate-900 text-base">Sistema de Alunos / SENAI Coins</h3>
+                    <span class="text-xs font-semibold px-2.5 py-0.5 rounded bg-slate-200 text-slate-900 border border-slate-300">Frontend</span>
+                  </div>
+                  <p class="text-xs font-semibold text-slate-700 mb-2">Vue.js • Tailwind CSS • API • JavaScript</p>
+                  <p class="text-xs text-slate-600 leading-relaxed">
+                    Interface para apresentação de alunos e dados do sistema de SENAI Coins, utilizando consumo de APIs assíncronas e componentes modulares.
+                  </p>
+                </div>
               </div>
-              
-                <p class="font-medium text-sm text-black mt-2">Habilidades chave:</p>
-                <p class="text-sm text-black">HTML5 | CSS3 | JavaScript | Python | Manipulação de DOM | Git & GitHub | Lógica de Programação | Web Semântica</p>
-              </div>
+            </section>
 
-              <!-- Competências -->
-               <div class="mb-8">
-                 <h2 class="text-xl font-bold text-black mb-2 flex items-center">
-                    <i class="fa-solid fa-flag-checkered"></i>
-                    Competências
-                 </h2>
-                 <div class="w-16 h-1 bg-blue-800"></div>
-                 <ul class="list-disc pl-5 text-sm text-black space-y-1">
-                  <li>Construção de páginas e aplicações web utilizando HTML5, CSS3 e JavaScript, focando em estruturas semânticas e interatividade.</li>
-                  <li>Criação e implementação de componentes de interface responsivos utilizando Tailwind CSS, focando em compatibilidade entre diferentes navegadores e dispositivos.</li>
-                  <li>Colaboração direta com meus companheiros de trabalho para entregar o melhor trabalho possível e dar ao usuário experiências fluidas e intuitivas.</li>
-                  <li>Foco contínuo em otimização de performance, acessibilidade e aplicação das melhores práticas de escrita de código.</li>
-                 </ul>
-               </div>
-
-               
-              
-            
-            <!-- Projects -->
-            <div>
-              <h2 class="text-xl font-bold text-black mb-2 flex items-center">
-                <i class="fa-solid fa-book-atlas"></i>
-                Atualmente estudando:
+            <!-- COMPETÊNCIAS -->
+            <section>
+              <h2 class="text-lg font-bold text-slate-900 mb-1 flex items-center">
+                <i class="fa-solid fa-flag-checkered mr-2.5 text-slate-900"></i>
+                Competências
               </h2>
-              <div class="w-16 h-1 bg-blue-800 mb-4"></div>
-              
-              <!-- Certification 1 -->
-              <div class="mb-4 p-4 border-l-4 border-blue-800 bg-blue-50 rounded-r">
-                <h3 class="text-lg font-semibold text-gray-800">Lógica em JavaScript e Python</h3>
-              </div>
+              <div class="w-12 h-1 bg-slate-900 rounded-full mb-3"></div>
 
-              <!-- Certification 2 -->
-              <div class="mb-4 p-4 border-l-4 border-blue-800 bg-blue-50 rounded-r">
-                <h3 class="text-lg font-semibold text-gray-800">Banco de Dados</h3>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-700">
+                <div class="flex items-center p-2.5 bg-slate-100 rounded-lg border border-slate-200">
+                  <i class="fa-solid fa-circle-check text-slate-900 mr-2"></i>
+                  <span>Desenvolvimento Web (HTML5/CSS3/JS)</span>
+                </div>
+                <div class="flex items-center p-2.5 bg-slate-100 rounded-lg border border-slate-200">
+                  <i class="fa-solid fa-circle-check text-slate-900 mr-2"></i>
+                  <span>Interfaces Responsivas com Tailwind CSS</span>
+                </div>
+                <div class="flex items-center p-2.5 bg-slate-100 rounded-lg border border-slate-200">
+                  <i class="fa-solid fa-circle-check text-slate-900 mr-2"></i>
+                  <span>Manipulação de DOM & Lógica de Programação</span>
+                </div>
+                <div class="flex items-center p-2.5 bg-slate-100 rounded-lg border border-slate-200">
+                  <i class="fa-solid fa-circle-check text-slate-900 mr-2"></i>
+                  <span>Consumo e Integração de APIs REST</span>
+                </div>
+                <div class="flex items-center p-2.5 bg-slate-100 rounded-lg border border-slate-200">
+                  <i class="fa-solid fa-circle-check text-slate-900 mr-2"></i>
+                  <span>Versionamento com Git e GitHub</span>
+                </div>
+                <div class="flex items-center p-2.5 bg-slate-100 rounded-lg border border-slate-200">
+                  <i class="fa-solid fa-circle-check text-slate-900 mr-2"></i>
+                  <span>Trabalho em Equipe e Resolução de Problemas</span>
+                </div>
               </div>
+            </section>
 
-              <!-- Certification 3 -->
-              <div class="mb-4 p-4 border-l-4 border-blue-800 bg-blue-50 rounded-r">
-                <h3 class="text-lg font-semibold text-gray-800">Aperfeiçoamento em HTML e CSS</h3>
-              </div>
-
-            </div>
           </div>
-          
-          <!-- Right Column -->
-          <div>
-            <!-- Skills -->
-            <div class="mb-8">
-              <h2 class="text-xl font-bold text-black mb-2 flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
+
+          <!-- ==================== COLUNA LATERAL ==================== -->
+          <div class="space-y-8 flex flex-col justify-between h-full">
+
+            <!-- ESTUDOS ATUAIS -->
+            <section>
+              <h2 class="text-lg font-bold text-slate-900 mb-1 flex items-center">
+                <i class="fa-solid fa-book-open mr-2.5 text-slate-900"></i>
+                Atualmente Estudando
+              </h2>
+              <div class="w-12 h-1 bg-slate-900 rounded-full mb-3"></div>
+
+              <div class="space-y-2.5">
+                <div class="p-3 border-l-4 border-slate-900 bg-slate-100 rounded-r-lg border-y border-r border-slate-200">
+                  <h3 class="font-semibold text-slate-900 text-xs">Inteligência Artificial</h3>
+                  <p class="text-xs text-slate-600 mt-0.5">Aprofundamento no uso da IA e automações</p>
+                </div>
+
+                <div class="p-3 border-l-4 border-slate-900 bg-slate-100 rounded-r-lg border-y border-r border-slate-200">
+                  <h3 class="font-semibold text-slate-900 text-xs">Bancos de Dados</h3>
+                  <p class="text-xs text-slate-600 mt-0.5">Modelagem SQL e ORM em aplicações</p>
+                </div>
+
+                <div class="p-3 border-l-4 border-slate-900 bg-slate-100 rounded-r-lg border-y border-r border-slate-200">
+                  <h3 class="font-semibold text-slate-900 text-xs">Frameworks Frontend</h3>
+                  <p class="text-xs text-slate-600 mt-0.5">Componentização avançada com Vue.js</p>
+                </div>
+
+                <div class="p-3 border-l-4 border-slate-900 bg-slate-100 rounded-r-lg border-y border-r border-slate-200">
+                  <h3 class="font-semibold text-slate-900 text-xs">Arquitetura de APIs</h3>
+                  <p class="text-xs text-slate-600 mt-0.5">Comunicação eficiente Frontend/Backend</p>
+                </div>
+              </div>
+            </section>
+
+            <!-- HABILIDADES -->
+            <section>
+              <h2 class="text-lg font-bold text-slate-900 mb-1 flex items-center">
+                <i class="fa-solid fa-bolt mr-2.5 text-slate-900"></i>
                 Habilidades
               </h2>
-              <div class="w-16 h-1 bg-blue-800 mb-4"></div>
-              
-              <!-- Skill Items -->
-              <div class="space-y-3">
-                <div class="flex items-center p-3 bg-blue-50 rounded-lg hover:bg-blue-200 transition-colors">
-                  <div class="w-8 h-8 bg-black text-white rounded-lg flex items-center justify-center mr-3">
-                 <i class="devicon-html5-plain colored"></i>
-                  </div>
-                  <span class="font-medium">HTML</span>
-                </div>
-                
-                <div class="flex items-center p-3 bg-blue-50 rounded-lg hover:bg-blue-200 transition-colors">
-                  <div class="w-8 h-8 bg-black text-white rounded-lg flex items-center justify-center mr-3">
-                <i class="devicon-css3-plain colored"></i>
-                  </div>
-                  <span class="font-medium">CSS</span>
-                </div>
-                
-                <div class="flex items-center p-3 bg-blue-50 rounded-lg hover:bg-blue-200 transition-colors">
-                  <div class="w-8 h-8 bg-black text-white rounded-lg flex items-center justify-center mr-3">
-                <i class="devicon-javascript-plain colored"></i>
-                  </div>
-                  <span class="font-medium">JavaScript</span>
-                </div>
-                
-                <div class="flex items-center p-3 bg-blue-50 rounded-lg hover:bg-blue-200 transition-colors">
-                  <div class="w-8 h-8 bg-black text-white rounded-lg flex items-center justify-center mr-3">  
-                <i class="devicon-python-plain colored"></i>
-                  </div>
-                  <span class="font-medium">Python</span>
+              <div class="w-12 h-1 bg-slate-900 rounded-full mb-3"></div>
+
+              <div class="grid grid-cols-2 gap-2">
+                <div class="flex items-center p-2.5 bg-slate-100 rounded-xl border border-slate-200 hover:border-slate-900 transition-colors">
+                  <i class="devicon-html5-plain colored text-xl mr-2.5"></i>
+                  <span class="font-medium text-xs text-slate-900">HTML5</span>
                 </div>
 
-                <div class="flex items-center p-3 bg-blue-50 rounded-lg hover:bg-blue-200 transition-colors">
-                  <div class="w-8 h-8 bg-black text-white rounded-lg flex items-center justify-center mr-3"> 
-                <i class="devicon-tailwindcss-original colored"></i>
-                  </div>
-                  <span class="font-medium">Tailwindcss</span>
+                <div class="flex items-center p-2.5 bg-slate-100 rounded-xl border border-slate-200 hover:border-slate-900 transition-colors">
+                  <i class="devicon-css3-plain colored text-xl mr-2.5"></i>
+                  <span class="font-medium text-xs text-slate-900">CSS3</span>
                 </div>
 
-                <div class="flex items-center p-3 bg-blue-50 rounded-lg hover:bg-blue-200 transition-colors">
-                  <div class="w-8 h-8 bg-black text-white rounded-lg flex items-center justify-center mr-3"> 
-                <i class="devicon-githubcodespaces-plain"></i>
-                  </div>
-                  <span class="font-medium">Git & GitHub</span>
+                <div class="flex items-center p-2.5 bg-slate-100 rounded-xl border border-slate-200 hover:border-slate-900 transition-colors">
+                  <i class="devicon-javascript-plain colored text-xl mr-2.5"></i>
+                  <span class="font-medium text-xs text-slate-900">JavaScript</span>
+                </div>
+
+                <div class="flex items-center p-2.5 bg-slate-100 rounded-xl border border-slate-200 hover:border-slate-900 transition-colors">
+                  <i class="devicon-python-plain colored text-xl mr-2.5"></i>
+                  <span class="font-medium text-xs text-slate-900">Python</span>
+                </div>
+
+                <div class="flex items-center p-2.5 bg-slate-100 rounded-xl border border-slate-200 hover:border-slate-900 transition-colors">
+                  <i class="devicon-tailwindcss-original colored text-xl mr-2.5"></i>
+                  <span class="font-medium text-xs text-slate-900">Tailwind</span>
+                </div>
+
+                <div class="flex items-center p-2.5 bg-slate-100 rounded-xl border border-slate-200 hover:border-slate-900 transition-colors">
+                  <i class="devicon-vuejs-plain text-xl mr-2.5 text-green-700"></i>
+                  <span class="font-medium text-xs text-slate-900">Vue.js</span>
+                </div>
+
+                <div class="flex items-center p-2.5 bg-slate-100 rounded-xl border border-slate-200 hover:border-slate-900 transition-colors">
+                  <i class="devicon-flask-original colored text-xl mr-2.5"></i>
+                  <span class="font-medium text-xs text-slate-900">Flask</span>
+                </div>
+
+                <div class="flex items-center p-2.5 bg-slate-100 rounded-xl border border-slate-200 hover:border-slate-900 transition-colors">
+                  <i class="devicon-github-original text-xl text-slate-900 mr-2.5"></i>
+                  <span class="font-medium text-xs text-slate-900">GitHub</span>
                 </div>
               </div>
-            </div>
-            
-            <!-- Education -->
-            <div>
-              <h2 class="text-xl font-bold text-black mb-2 flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path d="M12 14l9-5-9-5-9 5 9 5z" />
-                  <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
-                </svg>
+            </section>
+
+            <!-- EDUCAÇÃO -->
+            <section>
+              <h2 class="text-lg font-bold text-slate-900 mb-1 flex items-center">
+                <i class="fa-solid fa-graduation-cap mr-2.5 text-slate-900"></i>
                 Educação
               </h2>
-              <div class="w-16 h-1 bg-blue-800 mb-4"></div>
-              
-              <!-- Education Items -->
-              <div class="space-y-4">
-                <!-- Education 1 -->
-                <div class="relative pl-6 border-l-2 border-blue-800">
-                  <div class="absolute -left-1.5 top-1.5 w-3 h-3 rounded-full bg-blue-400"></div>
-                  <div class="bg-gray-50 p-3 rounded">
-                    <p class="text-xs font-semibold text-blue-600">Agosto 2026 - Novembro 2027</p>
-                    <h3 class="font-semibold">SENAI-RJ</h3>
-                  </div>
-                </div>
-              </div>
-            </div>
+              <div class="w-12 h-1 bg-slate-900 rounded-full mb-3"></div>
 
-            <!-- Contact -->
-            <div class="mt-8">
-              <h2 class="text-xl font-bold text-black mb-2 flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
+              <div class="content-box p-4 rounded-xl">
+                <span class="text-[11px] font-semibold text-white bg-slate-900 px-2 py-0.5 rounded">
+                  Agosto 2026 - Setembro 2027
+                </span>
+
+                <h3 class="font-bold text-slate-900 text-sm mt-3">
+                  SENAI-RJ
+                </h3>
+
+                <p class="text-xs font-semibold text-slate-700 mt-0.5">
+                  Técnico em Desenvolvimento de Sistemas
+                </p>
+
+                <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                  Formação técnica com foco em desenvolvimento de software, estruturas de dados e tecnologias para ambiente web.
+                </p>
+              </div>
+            </section>
+
+            <!-- CONHECIMENTOS -->
+            <section>
+              <h2 class="text-lg font-bold text-slate-900 mb-1 flex items-center">
+                <i class="fa-solid fa-layer-group mr-2.5 text-slate-900"></i>
+                Conhecimentos
+              </h2>
+              <div class="w-12 h-1 bg-slate-900 rounded-full mb-3"></div>
+
+              <div class="flex flex-wrap gap-1.5">
+                <span class="px-2.5 py-1 bg-slate-100 border border-slate-200 text-slate-900 rounded-lg text-xs font-medium">Web Semântica</span>
+                <span class="px-2.5 py-1 bg-slate-100 border border-slate-200 text-slate-900 rounded-lg text-xs font-medium">Manipulação DOM</span>
+                <span class="px-2.5 py-1 bg-slate-100 border border-slate-200 text-slate-900 rounded-lg text-xs font-medium">APIs REST</span>
+                <span class="px-2.5 py-1 bg-slate-100 border border-slate-200 text-slate-900 rounded-lg text-xs font-medium">Layouts Responsivos</span>
+                <span class="px-2.5 py-1 bg-slate-100 border border-slate-200 text-slate-900 rounded-lg text-xs font-medium">Lógica de Código</span>
+                <span class="px-2.5 py-1 bg-slate-100 border border-slate-200 text-slate-900 rounded-lg text-xs font-medium">Git & GitHub</span>
+                <span class="px-2.5 py-1 bg-slate-100 border border-slate-200 text-slate-900 rounded-lg text-xs font-medium">UI / UX Web</span>
+              </div>
+            </section>
+
+            <!-- CONTATO -->
+            <section>
+              <h2 class="text-lg font-bold text-slate-900 mb-1 flex items-center">
+                <i class="fa-solid fa-address-card mr-2.5 text-slate-900"></i>
                 Contato
               </h2>
-              <div class="w-16 h-1 bg-blue-800 mb-4"></div>
-              
-                
-                 
-                <div class="space-y-3">
-                  <div class="flex items-center p-3 w-72 bg-blue-50 rounded-lg hover:bg-blue-200 transition-colors">
-                    <div class="w-8 h-8 bg-blue-50 text-white rounded-lg flex items-center justify-center mr-3">
-                      <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 512 512">
-                        <path d="M34.9 448h81.5V250.2L0 163v250.2C0 432.5 15.7 448 34.9 448" style="fill:#4285f4"/>
-                        <path d="M395.6 448h81.5c19.3 0 34.9-15.7 34.9-34.9V163l-116.4 87.3" style="fill:#34a853"/>
-                        <path d="M395.6 99v151.3L512 163v-46.5c0-43.2-49.3-67.8-83.8-41.9" style="fill:#fbbc04"/>
-                        <path d="M116.4 250.2V99L256 203.7 395.6 99v151.3L256 355" style="fill:#ea4335"/>
-                        <path d="M0 116.4V163l116.4 87.3V99L83.8 74.5C49.2 48.6 0 73.2 0 116.4" style="fill:#c5221f"/>
-                      </svg>
-                    </div>
-                    <span class="font-medium">italoanthero03@gmail.com</span>
-                  </div>
+              <div class="w-12 h-1 bg-slate-900 rounded-full mb-3"></div>
 
-                  <div class="space-y-3">
-                    <div class="flex items-center p-3 w-72 bg-blue-50 rounded-lg hover:bg-blue-200 transition-colors">
-                      <a href="https://www.linkedin.com/in/italo-anthero-rodrigues" target="_blank" class="flex items-center w-full">
-                      <div class="w-8 h-8 bg-blue-50 text-blue-800 rounded-lg flex items-center justify-center mr-3">
-                        <i class="fa-brands fa-linkedin"></i>
-                      </div>
-                      <span class="font-medium">Linkedln</span>
-                      </a>
-                    </div>
-
-                   <div class="space-y-3">
-                <div class="flex items-center p-3 w-72 bg-blue-50 rounded-lg hover:bg-blue-200 transition-colors">
-                  <a href="https://github.com/italoanthero03" target="_blank" class="flex items-center w-full">
-                  <div class="w-8 h-8 bg-blue-50 text-black rounded-lg flex items-center justify-center mr-3">
-                      <i class="fa-brands fa-github"></i>
+              <div class="space-y-2">
+                <a href="mailto:italoanthero03@gmail.com" class="flex items-center p-3 bg-slate-100 rounded-xl border border-slate-200 hover:border-slate-900 hover:bg-slate-200 transition-all group">
+                  <div class="w-8 h-8 bg-slate-900 text-white rounded-lg flex items-center justify-center mr-3 group-hover:bg-black transition-colors">
+                    <i class="fa-solid fa-envelope"></i>
                   </div>
-                  <span class="font-medium">GitHub</span>
-                  </a>
-                </div>
-                
-                
+                  <span class="font-medium text-xs text-slate-900 break-all">
+                    italoanthero03@gmail.com
+                  </span>
+                </a>
+
+                <a href="https://www.linkedin.com/in/italo-anthero-rodrigues" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 bg-slate-100 rounded-xl border border-slate-200 hover:border-slate-900 hover:bg-slate-200 transition-all group">
+                  <div class="w-8 h-8 bg-slate-900 text-white rounded-lg flex items-center justify-center mr-3 group-hover:bg-black transition-colors">
+                    <i class="fa-brands fa-linkedin-in text-base"></i>
+                  </div>
+                  <span class="font-medium text-xs text-slate-900">LinkedIn</span>
+                </a>
+
+                <a href="https://github.com/italoanthero03" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 bg-slate-100 rounded-xl border border-slate-200 hover:border-slate-900 hover:bg-slate-200 transition-all group">
+                  <div class="w-8 h-8 bg-slate-900 text-white rounded-lg flex items-center justify-center mr-3 group-hover:bg-black transition-colors">
+                    <i class="fa-brands fa-github text-base"></i>
+                  </div>
+                  <span class="font-medium text-xs text-slate-900">GitHub</span>
+                </a>
               </div>
-            </div>
+            </section>
+
           </div>
+
         </div>
-        
-        
-        
-      </div>
+      </main>
+
+      <!-- ==================== FOOTER ==================== -->
+      <footer class="mt-10 pt-6 border-t border-gray-200 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs font-medium">
+        <p class="text-slate-500">Desenvolvido com Tailwind CSS & HTML5</p>
+        <p class="text-slate-500">© 2026 Italo Anthero R. Jordão</p>
+      </footer>
+
     </div>
-    <!-- Footer -->
-  <div class="p-4 w-full flex items-center text-sm text-gray-500 border-t border-gray-200">
-    <p>Feito com Tailwind CSS | © 2026 Italo Anthero R. Jordão</p>
   </div>
+
+  <!-- Script para animação de partículas em movimento no fundo -->
+  <script>
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+
+    let particles = [];
+    const particleCount = 40;
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 0.5;
+        this.vx = (Math.random() - 0.5) * 0.25;
+        this.vy = (Math.random() - 0.5) * 0.25;
+        this.alpha = Math.random() * 0.4 + 0.1;
+      }
+
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+
+        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
+
 </body>
+
 </html>
